@@ -1,0 +1,31 @@
+version: '2'
+services:
+  web:
+    build: .
+    container_name: blog-web
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "90:80"
+      - "8890:8890"
+    extra_hosts:
+      - "blog.vn:127.0.0.1"
+    links:
+      - redis
+      - serverdb
+  serverdb:
+    image: mysql:5.7
+    container_name: blog-serverdb
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+    ports:
+      - 3406:3306
+  redis:
+    image: redis
+    container_name: blog-redis
+    volumes:
+      - ./data/redis:/data
+    ports:
+        - "6380:6379"

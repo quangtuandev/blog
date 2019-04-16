@@ -1,0 +1,6 @@
+export const SET_CURRENT_PAGE_USER = 'SET_CURRENT_PAGE_USER'
+export const SET_LOADING = 'SET_LOADING'
+export default {
+    SET_CURRENT_PAGE_USER,
+    SET_LOADING
+}
